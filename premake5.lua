@@ -125,10 +125,15 @@ project "NVRHI_D3D12"
 
     includedirs {
         nvrhi_path("include"),
-        nvrhi_path("thirdparty/DirectX-Headers/include"),
-        nvrhi_path("thirdparty/DirectX-Headers/include/directx"),
-        nvrhi_path("thirdparty/DirectX-Headers/include/wsl/stubs")
+        nvrhi_path("thirdparty/DirectX-Headers/include")
     }
+
+    -- WSL stubs only needed on non-Windows platforms
+    filter "system:not windows"
+        includedirs {
+            nvrhi_path("thirdparty/DirectX-Headers/include/wsl/stubs")
+        }
+    filter {}
 
     links {
         "d3d12",
@@ -317,10 +322,7 @@ NVRHIConfig = {
         if NVRHI_WITH_VULKAN then
             table.insert(dirs, NVRHI_VULKAN_HEADERS_DIR)
         end
-        if NVRHI_WITH_DX12 or NVRHI_WITH_DX11 then
-            table.insert(dirs, NVRHI_DX_HEADERS_DIR)
-            table.insert(dirs, nvrhi_path("thirdparty/DirectX-Headers/include/directx"))
-        end
+        -- DirectX headers only needed on non-Windows (Windows uses SDK)
         return dirs
     end,
 
