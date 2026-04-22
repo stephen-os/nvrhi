@@ -26,10 +26,13 @@ project "NVRHI"
     kind "StaticLib"
     language "C++"
     cppdialect "C++17"
-    staticruntime "Off"
+    staticruntime "off"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    flags { "MultiProcessorCompile" }
+    buildoptions { "/utf-8" }
+
+    targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
     files {
         -- Common headers
@@ -95,10 +98,13 @@ project "NVRHI_D3D12"
     kind "StaticLib"
     language "C++"
     cppdialect "C++17"
-    staticruntime "Off"
+    staticruntime "off"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    flags { "MultiProcessorCompile" }
+    buildoptions { "/utf-8" }
+
+    targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
     files {
         nvrhi_path("include/nvrhi/d3d12.h"),
@@ -176,10 +182,13 @@ project "NVRHI_D3D11"
     kind "StaticLib"
     language "C++"
     cppdialect "C++17"
-    staticruntime "Off"
+    staticruntime "off"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    flags { "MultiProcessorCompile" }
+    buildoptions { "/utf-8" }
+
+    targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
     files {
         nvrhi_path("include/nvrhi/d3d11.h"),
@@ -241,10 +250,13 @@ project "NVRHI_VK"
     kind "StaticLib"
     language "C++"
     cppdialect "C++17"
-    staticruntime "Off"
+    staticruntime "off"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    flags { "MultiProcessorCompile" }
+    buildoptions { "/utf-8" }
+
+    targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
     files {
         nvrhi_path("include/nvrhi/vulkan.h"),
