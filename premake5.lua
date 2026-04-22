@@ -5,7 +5,7 @@
 NVRHI_WITH_VALIDATION = NVRHI_WITH_VALIDATION == nil and true or NVRHI_WITH_VALIDATION
 NVRHI_WITH_VULKAN = NVRHI_WITH_VULKAN == nil and true or NVRHI_WITH_VULKAN
 NVRHI_WITH_DX12 = NVRHI_WITH_DX12 == nil and true or NVRHI_WITH_DX12
-NVRHI_WITH_DX11 = NVRHI_WITH_DX11 == nil and false or NVRHI_WITH_DX11  -- Disabled by default
+NVRHI_WITH_DX11 = NVRHI_WITH_DX11 == nil and true or NVRHI_WITH_DX11
 
 local nvrhi_root = path.getdirectory(_SCRIPT)
 
@@ -246,7 +246,7 @@ end
 -- NVRHI Vulkan Backend
 -------------------------------------------------------------------------------
 if NVRHI_WITH_VULKAN then
-project "NVRHI_VK"
+project "NVRHI_VULKAN"
     kind "StaticLib"
     language "C++"
     cppdialect "C++17"
@@ -326,7 +326,7 @@ end
 -- NVRHIConfig: Helper table for linking NVRHI to other projects
 -- Usage: In your project, after including this file:
 --   includedirs { NVRHI_INCLUDE_DIR, NVRHI_VULKAN_HEADERS_DIR }
---   links { "NVRHI", "NVRHI_VK", "NVRHI_D3D12" }
+--   links { "NVRHI", "NVRHI_VULKAN", "NVRHI_D3D12" }
 -------------------------------------------------------------------------------
 NVRHIConfig = {
     includedirs = function()
@@ -341,7 +341,7 @@ NVRHIConfig = {
     links = function()
         local libs = { "NVRHI" }
         if NVRHI_WITH_VULKAN then
-            table.insert(libs, "NVRHI_VK")
+            table.insert(libs, "NVRHI_VULKAN")
         end
         if NVRHI_WITH_DX12 then
             table.insert(libs, "NVRHI_D3D12")
